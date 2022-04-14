@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p id= "output"></p>
+  <script>
+    'use strict';
+
+    function total(price){
+      const tax = 0.1;
+      return price =price + price*tax;
+    }
+    console.log('コーヒーメーカーの値段は' + total(8000) +'円（税込）です');
+    document.getElementById('output').textContent = 'コーヒーメーカーの値段は' + total(8000) +'円（税込）です';
+  </script>
+</body>
+</html>
