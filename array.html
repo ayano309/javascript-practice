@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>やることリスト</h1>
+  <ul id="list">
+
+  </ul>
+  <script>
+    'use strict';
+
+    let todo = ['デザインカンプ','データ整理','勉強会申し込み','牛乳買う'];
+    todo.push('歯医者に行く')
+    for(let item of todo){
+      const li =  `<li>${item}</li>`;
+      document.getElementById('list').insertAdjacentHTML('beforeend',li);
+      // 取得した要素.insertAdjacentHTML('挿入する場所','挿入する要素')；
+    }
+    
+  </script>
+</body>
+</html>
