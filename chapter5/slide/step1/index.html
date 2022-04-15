@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .slide{
+            margin: 0 auto;
+            border: 1px solid black;
+            width: 720px;
+            background-color: black;
+        }
+        img{
+            max-width: 100%;
+        }
+        .toolbar{
+            overflow: hidden;
+            text-align: center;
+        }
+        .nav{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 16px 0;
+        }
+        #prev {
+            margin-right: 0.5rem;
+            width: 16px;
+            height: 16px;
+            background: url(images/arrow-left.svg) no-repeat;
+        }
+        #page{
+            color: white;
+        }
+        #next {
+            margin-right: 0.5rem;
+            width: 16px;
+            height: 16px;
+            background: url(images/arrow-right.svg) no-repeat;
+        }
+
+    </style>
+</head>
+<body>
+    <section>
+        <div class="slide">
+            <div class="image_box">
+                <img id="main_image" src="images/image1.jpg">
+            </div>
+            <div class="toolbar">
+                <div class="nav">
+                    <div id="prev"></div>
+                    <div id="page"></div>
+                    <div id="next"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        'use strict';
+
+        const images = ['images/image1.jpg','images/image2.jpg','images/image3.jpg','images/image4.jpg','images/image5.jpg'];
+        //ブリロード、画像を先に読み込む
+        images.forEach(function(item,index){
+            preloadImage(item);
+        });
+
+        let current =0;
+
+        function changeImage(num){
+            if(current + num >=0 && current + num < images.length){
+                current += num;
+                //images[current]でcurrent番目のデータ（画像パス）を設定している
+                document.getElementById('main_image').src = images[current];
+                pageNum();
+            }
+        };
+        //現在のページ/画像の点数
+        function pageNum(){
+            document.getElementById('page').textContent = `${current +1 }/${images.length}`;
+        }
+
+        //createElementは()内のタグ名を持つ要素を生成して、メモリに保存するメソッド
+        function preloadImage(path){
+            let imgTag = document.createElement('img');
+            imgTag.src = path;
+        }
+
+        pageNum();
+        
+        document.getElementById('prev').onclick = function(){
+            changeImage(-1);
+        };
+        document.getElementById('next').onclick = function(){
+            changeImage(1);
+        };
+    </script>
+</body>
+</html>
